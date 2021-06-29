@@ -32,32 +32,28 @@ fs.writeFileSync('./db/db.json', JSON.stringify(noteArray));
 //     });
 // });
 
-app.get('/api/notes', (request, response) => {
-    console.log("\n\nExecuting GET notes request");
+app.get('/api/notes', (req, res) => {
     let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
-    console.log("\nGET request - Returning notes data: " + JSON.stringify(data));
 
-    response.json(data);
+    res.json(data);
 });
 
-app.get('/notes', function(request, response) {
-    response.sendFile(path.join(__dirname, './public/notes.html'));
+app.get('/notes', function(req, res) {
+    res.sendFile(path.join(__dirname, './public/notes.html'));
 });
 
-app.get('/*', function (request, response) {
-    response.sendFile(path.join(__dirname, './public/index.html'));
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
-app.post('/api/notes', (request, response) => {
-    const newNote = request.body;
-    console.log("\n\nPOST request - New Note : " + JSON.stringify(newNote));
+app.post('/api/notes', (req, res) => {
+    const newNote = req.body;
     // Assigning unique id from 'uuid' package
     newNote.id = uuidv4();
     let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
     data.push(newNote);
     fs.writeFileSync('./db/db.json', JSON.stringify(data));
-    console.log("\nSuccessfully added new note to 'db.json' file.");
-    response.json(data);
+    res.json(data);
 });
 
 //could add app.delete request here with id
