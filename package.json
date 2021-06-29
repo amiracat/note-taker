@@ -1,7 +1,7 @@
 {
   "name": "note-taker",
   "version": "1.0.0",
-  "description": "",
+  "description": "create and read notes",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "inquirer": "^8.1.1"
+    "inquirer": "^8.1.1",
+    "uuid": "^8.3.2"
   }
 }
